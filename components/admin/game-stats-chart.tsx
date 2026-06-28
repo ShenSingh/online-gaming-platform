@@ -43,7 +43,7 @@ export function GameStatsChart({ stats }: { stats: GameStat[] }) {
                 color: "oklch(0.96 0 0)",
                 fontSize: 12,
               }}
-              formatter={(v: number) => [`$${v.toLocaleString()}`, "Revenue"]}
+              formatter={(value) => [`$${Number(value ?? 0).toLocaleString()}`, "Revenue"]}
             />
             <Bar dataKey="revenue" radius={[8, 8, 0, 0]}>
               {data.map((d) => (

@@ -16,7 +16,7 @@ export function GameCard({ game, delay = 0 }: { game: GameInfo; delay?: number }
       transition={{ duration: 0.35, delay }}
     >
       <Link
-        href={`/games?play=${game.key}`}
+        href={`/games?game=${game.key}`}
         className="group block overflow-hidden rounded-[1.75rem] border border-border/80 bg-card/80 shadow-[0_24px_80px_-52px_rgb(0_0_0_/_0.95)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
       >
         <div className="relative aspect-[4/3] overflow-hidden">

@@ -62,7 +62,7 @@ export function RevenueChart() {
                 color: "oklch(0.96 0 0)",
                 fontSize: 12,
               }}
-              formatter={(v: number, n: string) => [`$${v.toLocaleString()}`, n]}
+              formatter={(value, name) => [`$${Number(value ?? 0).toLocaleString()}`, String(name)]}
             />
             <Area type="monotone" dataKey="wagered" stroke="oklch(0.78 0.21 145)" strokeWidth={2} fill="url(#wageredFill)" />
             <Area type="monotone" dataKey="payout" stroke="oklch(0.7 0.16 230)" strokeWidth={2} fill="url(#payoutFill)" />

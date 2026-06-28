@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { GAMES } from "@/lib/games"
 import { DiceGame } from "./dice-game"
@@ -12,7 +12,12 @@ import { cn } from "@/lib/utils"
 type GameId = "dice" | "aviator" | "roulette" | "slots"
 
 export function GamesView({ initial }: { initial?: GameId }) {
-  const [active, setActive] = useState<GameId>(initial ?? "dice")
+  const initialActive = initial ?? "dice"
+  const [active, setActive] = useState<GameId>(initialActive)
+
+  useEffect(() => {
+    setActive(initialActive)
+  }, [initialActive])
 
   return (
     <div className="space-y-6">
@@ -49,12 +54,12 @@ export function GamesView({ initial }: { initial?: GameId }) {
 
       <div className="rounded-[1.75rem] border border-border/70 bg-card/60 p-2 shadow-[0_20px_60px_-44px_rgb(0_0_0_/_0.95)] backdrop-blur">
         {GAMES.map((g) => {
-          const isActive = g.id === active
+          const isActive = g.key === active
           return (
             <button
-              key={g.id}
+              key={g.key}
               type="button"
-              onClick={() => setActive(g.id as GameId)}
+              onClick={() => setActive(g.key as GameId)}
               className={cn(
                 "mr-2 mb-2 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all",
                 isActive
@@ -67,7 +72,7 @@ export function GamesView({ initial }: { initial?: GameId }) {
                 style={{ backgroundColor: g.accent }}
                 aria-hidden
               />
-              {g.name}
+              {g.label}
             </button>
           )
         })}

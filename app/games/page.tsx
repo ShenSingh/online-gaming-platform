@@ -1,16 +1,16 @@
 import { AppShell } from "@/components/layout/app-shell"
 import { GamesView } from "@/components/games/games-view"
-
-type GameId = "dice" | "aviator" | "roulette" | "slots"
+import type { GameKey } from "@/lib/types"
 
 export default async function GamesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ game?: string }>
+  searchParams: Promise<{ game?: string; play?: string }>
 }) {
-  const { game } = await searchParams
-  const valid: GameId[] = ["dice", "aviator", "roulette", "slots"]
-  const initial = valid.includes(game as GameId) ? (game as GameId) : undefined
+  const { game, play } = await searchParams
+  const valid: GameKey[] = ["dice", "aviator", "roulette", "slots"]
+  const selected = game ?? play
+  const initial = valid.includes(selected as GameKey) ? (selected as GameKey) : undefined
 
   return (
     <AppShell>

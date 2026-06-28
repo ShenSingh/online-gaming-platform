@@ -64,27 +64,27 @@ export function AuthForm() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="glass w-full max-w-md overflow-hidden rounded-[2rem] border border-border/80 p-7 shadow-[0_30px_90px_-52px_rgb(0_0_0_/_0.95)]"
+      className="glass w-full max-w-md overflow-hidden rounded-[2rem] border border-border/80 p-6 shadow-[0_30px_90px_-52px_rgb(0_0_0_/_0.95)] sm:p-7"
     >
-      <div className="mb-6">
+      <div className="mb-5">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
           <Sparkles className="size-3.5 text-neon-green" />
           Instant demo access
         </div>
-        <h2 className="mt-4 text-2xl font-bold tracking-tight text-foreground">Step into the lobby</h2>
+        <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground">Step into the lobby</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           Use a player or admin demo account to explore the platform in seconds.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-1 rounded-2xl border border-border/70 bg-background/45 p-1">
+      <div className="grid grid-cols-2 gap-1 rounded-2xl border border-border/70 bg-background/45 p-1 mb-5 text-center text-xs font-medium text-muted-foreground">
         {(["login", "register"] as const).map((m) => (
           <button
             key={m}
             type="button"
             onClick={() => setMode(m)}
             className={cn(
-              "relative rounded-[1.1rem] py-2.5 text-sm font-semibold capitalize transition-colors",
+              "relative flex h-12 items-center justify-center rounded-[1.1rem] text-sm font-semibold capitalize leading-none transition-colors",
               mode === m ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -95,12 +95,12 @@ export function AuthForm() {
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
-            <span className="relative">{m === "login" ? "Sign in" : "Sign up"}</span>
+            <span className="relative z-10">{m === "login" ? "Sign in" : "Sign up"}</span>
           </button>
         ))}
       </div>
 
-      <form onSubmit={submit} className="flex flex-col gap-3.5">
+      <form onSubmit={submit} className="flex flex-col gap-3">
         {isRegister && (
           <Field
             icon={User}
@@ -153,7 +153,7 @@ export function AuthForm() {
         </button>
       </form>
 
-      <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
+      <div className="my-4 flex items-center gap-3 text-xs text-muted-foreground">
         <span className="h-px flex-1 bg-border" />
         or continue with
         <span className="h-px flex-1 bg-border" />
@@ -172,7 +172,7 @@ export function AuthForm() {
         ))}
       </div>
 
-      <div className="mt-5 flex flex-col gap-2 rounded-2xl border border-dashed border-border/70 bg-background/35 p-3 text-center">
+      <div className="mt-4 flex flex-col gap-2 rounded-2xl border border-dashed border-border/70 bg-background/35 p-3 text-center">
         <p className="text-[11px] text-muted-foreground">Try the demo instantly</p>
         <div className="grid grid-cols-2 gap-2">
           <button
